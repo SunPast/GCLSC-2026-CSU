@@ -1,0 +1,7 @@
+# Runtime (Stage-1 generate / models)
+# Install a CUDA build from https://pytorch.org if you need GPU.
+torch>=2.0
+numpy>=1.24
+
+# Tests
+pytest>=7.0

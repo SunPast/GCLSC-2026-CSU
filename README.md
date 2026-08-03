@@ -4,7 +4,7 @@
 
 本项目聚焦 **AI 驱动的抗体序列设计与优化**，以 **ERBB2（HER2）** 为当前研究靶点，探索生成式建模、潜空间扩散与强化学习在抗体设计中的应用，构建从序列表征、可控生成到计算验证的研究流程。
 
------
+---
 
 ## 1. 项目目标
 
@@ -18,7 +18,7 @@
 
 整体遵循 **大规模无监督预训练 → 条件生成 → 任务导向微调** 的分阶段范式：先在大规模抗体序列上学习表征与生成先验，再引入属性条件与有限标注信号，逐步面向靶点优化。
 
------
+---
 
 ## 2. 研究概览
 
@@ -28,8 +28,6 @@
 - **Protein:** HER2 (Human Epidermal Growth Factor Receptor 2)
 
 HER2 是经典肿瘤治疗靶点，在乳腺癌、胃癌等多种恶性肿瘤中过表达，具有丰富的抗体结构、亲和力及实验数据，为 AI 模型训练与计算验证提供了可靠的数据基础。
-
-
 
 ### 2.2 🏗️ 技术路线
 
@@ -57,7 +55,6 @@ Antibody Optimization
 Docking / Structure Prediction
 ```
 
-
 整个模型采用三阶段训练策略。
 
 **Stage I：抗体序列 VAE 预训练**
@@ -70,15 +67,11 @@ Docking / Structure Prediction
 - 潜空间分布与利用率分析；
 - 先验采样序列的基本生物学合理性评估。
 
-
-
 **Stage II：潜空间条件扩散**
 
 冻结 Stage I 的 VAE，在潜空间上训练条件扩散模型，学习潜变量分布，并按连续生物物理 / 可开发性相关属性进行条件生成。属性信号用于引导采样，而非在本阶段重新做大规模序列表征预训练。
 
 本阶段完成后，应能够从噪声出发采样潜变量，并经冻结解码器得到候选抗体序列。
-
-
 
 **Stage III：强化学习微调**
 
@@ -93,8 +86,6 @@ Docking / Structure Prediction
 
 实现针对靶点场景的抗体序列优化。
 
-
-
 ### 2.3 🚀 奖励预测器设计
 
 强化学习若每一步直接调用分子对接计算奖励，计算成本过高。
@@ -107,8 +98,6 @@ Docking / Structure Prediction
 4. RL 更新
 
 当预测器认为候选序列具有较高潜力时，可调用物理引擎（Docking）等进行最终校验，以控制训练成本。
-
-
 
 ### 2.4 ✨ 方法特点
 
@@ -174,7 +163,7 @@ Docking / Structure Prediction
 
 若条件允许，将进一步开展湿实验验证；否则采用成熟计算流程完成干实验验证。
 
------
+---
 
 
 
@@ -185,21 +174,22 @@ Docking / Structure Prediction
 - 重视学习过程与团队成长。
 - 尊重成员学习与生活安排，关键节点集中协作。
 
------
+---
 
 
 
 ### 4. 项目进度
 
-| 节点 | 时间 |
-| :--- | :--- |
-| 报名与摘要提交 | 9 月 5 日前 |
-| 项目成果提交 | 10 月 8 日前 |
-| 区赛评审 | 10 月 15 日 |
-| 全国总决赛 | 10 月下旬 |
+
+| 节点      | 时间        |
+| ------- | --------- |
+| 报名与摘要提交 | 9 月 5 日前  |
+| 项目成果提交  | 10 月 8 日前 |
+| 区赛评审    | 10 月 15 日 |
+| 全国总决赛   | 10 月下旬    |
 
 
------
+---
 
 
 
@@ -209,11 +199,10 @@ Docking / Structure Prediction
 
 也欢迎邮件联系：
 
-- 📧 2210240103@csu.edu.cn
+- 📧 [2210240103@csu.edu.cn](mailto:2210240103@csu.edu.cn)
+- 📧 [jiading682@qq.com](mailto:jiading682@qq.com)
 
-- 📧 jiading682@qq.com
-
------
+---
 
 
 
@@ -227,7 +216,14 @@ DiffEboAb/checkpoints/stage1_vae/model.pt    # 指向 set.pt 的默认加载名�
 DiffEboAb/checkpoints/stage1_vae/vec.pt      # 可选：vector-latent 对照
 ```
 
-依赖：Python 3、PyTorch。在 `DiffEboAb/` 目录下执行无条件先验采样：
+依赖：Python ≥ 3.10。安装：
+
+```bash
+pip install -r requirements.txt
+# GPU 建议按 https://pytorch.org 选择对应 CUDA 的 torch 轮子
+```
+
+在 `DiffEboAb/` 目录下执行无条件先验采样：
 
 ```bash
 cd DiffEboAb
@@ -250,8 +246,9 @@ cd DiffEboAb
 python -m pytest tests/ -q
 ```
 
-------
+---
 
 > **Disclaimer**
 >
 > 本项目仅用于算法研究与学术交流，不能直接作为任何临床医疗建议。所有生成结果均需经过进一步的计算验证及实验验证。
+
