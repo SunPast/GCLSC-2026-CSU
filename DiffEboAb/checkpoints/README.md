@@ -5,9 +5,9 @@ Inference scripts **must** load weights from here — not from local training du
 ```
 checkpoints/
 ├── stage1_vae/
-│   ├── model.pt   → set.pt     # default for generate / downstream
-│   ├── set.pt                  # set-latent VAE (64×512), pipeline freeze
-│   └── vec.pt                  # vector-latent VAE (single z)
+│   ├── model.pt   → set.pt     # default for generate / downstream (in git)
+│   ├── set.pt                  # set-latent freeze @ step 1202000 (Git LFS)
+│   └── vec.pt                  # vector-latent @ 686000 (local / by request)
 ├── stage2_diffusion/           # later
 └── stage3_rl/                  # later
 ```

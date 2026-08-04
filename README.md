@@ -208,12 +208,19 @@ Docking / Structure Prediction
 
 ### 6. 快速开始
 
-权重文件体积较大，**不包含在本仓库中**。请先通过上述邮箱联系获取，并放置到指定槽位：
+默认 Stage-1 权重（`set.pt` / `model.pt`）经 **Git LFS** 随仓库提供。克隆后请先拉取 LFS 对象：
+
+```bash
+git lfs install
+git lfs pull
+```
+
+槽位：
 
 ```text
-DiffEboAb/checkpoints/stage1_vae/set.pt      # 主模型（set-latent）
-DiffEboAb/checkpoints/stage1_vae/model.pt    # 指向 set.pt 的默认加载名（可为同名文件或符号链接）
-DiffEboAb/checkpoints/stage1_vae/vec.pt      # 可选：vector-latent 对照
+DiffEboAb/checkpoints/stage1_vae/set.pt      # 主模型（set-latent，仓库内）
+DiffEboAb/checkpoints/stage1_vae/model.pt    # → set.pt（默认加载名）
+DiffEboAb/checkpoints/stage1_vae/vec.pt      # 可选对照，不在仓库；需要可邮件联系
 ```
 
 依赖：Python ≥ 3.10。安装：

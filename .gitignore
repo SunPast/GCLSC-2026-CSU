@@ -71,3 +71,6 @@ DiffEboAb/**/*.log
 *.pth
 # allow tiny keepers under checkpoints (gitkeep/readme already un-ignored above)
 !DiffEboAb/checkpoints/**/.gitkeep
+# default Stage-1 freeze (Git LFS); vec.pt stays local / by request
+!DiffEboAb/checkpoints/stage1_vae/set.pt
+!DiffEboAb/checkpoints/stage1_vae/model.pt
