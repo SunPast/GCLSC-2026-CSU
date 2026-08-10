@@ -1,0 +1,76 @@
+# =============================================================================
+# Repo root ignore — keep the public surface small.
+# Git root is this directory; DiffEboAb/ holds the code package.
+# =============================================================================
+
+# ---- never publish: data / recycle / papers / agent caches ----
+/data/
+/deleted/
+/doc/
+/docs/
+/.agents/
+/experiments/
+
+# ---- DiffEboAb: heavy or non-public trees ----
+DiffEboAb/docs/
+DiffEboAb/eval/
+DiffEboAb/workshop/
+DiffEboAb/experiments/
+
+# training & data-pipeline internals (publish models + invoke only)
+DiffEboAb/src/training/
+DiffEboAb/src/data/oas.py
+DiffEboAb/src/data/dataset.py
+
+# unfinished stubs / not ready to publish
+DiffEboAb/src/models/reward_mamba.py
+DiffEboAb/src/models/diffusion.py
+DiffEboAb/tests/stage2_diffusion/
+DiffEboAb/configs/
+# weights & binaries (slots keep README / .gitkeep)
+DiffEboAb/checkpoints/**/*.pt
+DiffEboAb/checkpoints/**/*.pth
+DiffEboAb/checkpoints/**/*.ckpt
+DiffEboAb/checkpoints/**/*.bin
+DiffEboAb/checkpoints/**/*.safetensors
+DiffEboAb/checkpoints/**/*.npz
+DiffEboAb/checkpoints/**/*.pkl
+!DiffEboAb/checkpoints/**/.gitkeep
+!DiffEboAb/checkpoints/**/README.md
+
+DiffEboAb/**/*.log
+
+# caches & local tooling
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/*.egg-info/
+**/.venv/
+**/venv/
+**/.DS_Store
+**/*.swp
+**/.idea/
+**/.vscode/
+
+# accidental bulk formats anywhere
+*.csv.gz
+*.fasta
+*.fa
+*.npz
+*.h5
+*.parquet
+*.tar
+*.tar.gz
+*.zip
+*.pdf
+*.pptx
+*.ckpt
+*.pt
+*.pth
+# allow tiny keepers under checkpoints (gitkeep/readme already un-ignored above)
+!DiffEboAb/checkpoints/**/.gitkeep
+# default Stage-1 freeze (Git LFS); vec.pt stays local / by request
+!DiffEboAb/checkpoints/stage1_vae/set.pt
+!DiffEboAb/checkpoints/stage1_vae/model.pt
