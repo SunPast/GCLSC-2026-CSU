@@ -1,0 +1,9 @@
+# Module 2 — sequence QC / correction / audit
+#
+# Tested with Python 3.14.6 on Windows 11.
+#   pip install -r requirements.txt
+#
+# ANARCI is BSD-3-Clause and pyhmmer is MIT — both fine for commercial use.
+
+anarci>=2026.2.13.2
+pyhmmer>=0.12.3
