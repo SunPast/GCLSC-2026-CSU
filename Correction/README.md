@@ -14,13 +14,13 @@
 
 ## 一、环境准备
 
-需要 Python 3.14（在 3.14.6 / Windows 11 上验证过）。
+建议 Python 3.14（已验证）。
 
 ```bash
 pip install -r requirements.txt
 ```
 
-依赖只有两个：`anarci` 和 `pyhmmer`。选 pyhmmer 而不是原版 ANARCI 的 `hmmscan`，是因为 Windows 上没有 hmmscan 可执行文件。
+依赖只有两个：`anarci` 和 `pyhmmer`。
 
 **以下所有命令都在项目根目录（本文件所在目录）执行。**
 
@@ -61,9 +61,9 @@ Batch Processing Complete: BATCH_HER2_20260809_01
   Summary:  C:\Users\Lenovo\Desktop\GCLSC\data\02_correction\BATCH_HER2_20260809_01\batch_correction_summary/batch_correction_summary.md
 ```
 
-**交给 stage 3 的是 `manifest.csv`**，别的都是过程记录，自己看。
+**交给 module 3 的是 `manifest.csv`**，其余文档均为过程记录。
 
-### 输入不在默认路径怎么办
+### 输入不在默认路径怎么办？
 
 上游直接甩来一个文件（比如 `D2_candidates_50.fa`）时，用 `-i` 指路径就行，`-b` 可以省：
 
@@ -110,7 +110,7 @@ YADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAKDYWGQGTLVTVSS
 data/02_correction/<BatchID>/
 ├── manifest.csv                        ← 交付给 stage 3
 ├── batch_correction_summary/
-│   └── batch_correction_summary.md     ← 整批汇总，人看的
+│   └── batch_correction_summary.md     ← 整批汇总文档
 └── <Seq_ID>/
     ├── raw.fa                          ← 原始序列
     ├── processed/
@@ -144,9 +144,9 @@ FAIL 的行保留在表里，不删——出问题的序列要能追溯到，不
 
 ---
 
-## 五、PASS / FAIL 怎么判的
+## 五、PASS / FAIL 判断准则
 
-先看**硬性失败条件**，中任一条直接 FAIL，不进打分：
+先看**硬性失败条件**，若有任一条直接 FAIL，不进打分：
 
 | # | 条件 | 原因 |
 | --- | --- | --- |
@@ -172,7 +172,7 @@ FAIL 的行保留在表里，不删——出问题的序列要能追溯到，不
 
 阈值 0.94 是从数据里校准出来的——正负样本扫描后，**误杀为 0 的最高阈值**（正样本最低分 0.950）。
 
-本模块**只有 PASS 和 FAIL 两种状态**，没有中间档、没有 WARN 状态写进 manifest。
+本模块**只有 PASS 和 FAIL 两种状态**。
 
 ---
 
@@ -199,9 +199,7 @@ python scripts/generate_mock.py
 
 ### `scripts/validation/` — 验证脚本（一般用不到）
 
-v1–v4 四套验证脚本和正样本存档脚本，产物是 `docs/validation_report_v1–v4.md`。
-
-**这些脚本会重新生成对应的报告文档。** 报告是定稿的，别随手重跑。
+v1–v4 四套验证脚本和正样本存档脚本，产物是 `docs/validation_report_v1–v4.md`。这些脚本会重新生成对应的报告文档。
 
 ---
 
@@ -239,6 +237,10 @@ v1–v4 四套验证脚本和正样本存档脚本，产物是 `docs/validation_
 - [docs/02_IMGT注释说明.md](docs/02_IMGT注释说明.md) — IMGT 注释格式，ANARCI 编号框架偏移与修复
 - [docs/validation_report_v1.md](docs/validation_report_v1.md) — 端到端验证
 - [docs/validation_report_v4.md](docs/validation_report_v4.md) — 阈值扫描
+
+## 九、问题反馈
+
+若有任何关于此模块的疑问，请联系jiading682@qq.com，谢谢！
 
 **文献：**
 
